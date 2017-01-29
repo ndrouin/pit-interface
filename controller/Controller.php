@@ -15,11 +15,11 @@ class Controller
     public function __construct()
     {
         $this->model = new Model("localhost","root","rootroot");
-        $this->model->getDevice();
     }
 
     public function invoke()
     {
-        include 'view/helloWorld.php';
+        $devices = $this->model->getDevices();
+        include 'view/listDevices.php';
     }
 }

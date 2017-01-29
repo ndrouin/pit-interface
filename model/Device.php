@@ -8,10 +8,10 @@
  */
 class Device
 {
-    public $id;
-    public $name;
-    public $date;
-    public $address;
+    private $id;
+    private $name;
+    private $date;
+    private $address;
 
     public function __construct($id, $name, $date, $address)
     {
@@ -19,5 +19,25 @@ class Device
         $this->name = $name;
         $this->date = $date;
         $this->address = $address;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
     }
 }
