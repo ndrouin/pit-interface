@@ -14,7 +14,7 @@ include_once("Device.php");
 class Model
 {
 
-    public function __construct($server, $username, $password)
+    public function connection($server, $username, $password)
     {
         $this->$server = $server;
         $this->$username= $username;
