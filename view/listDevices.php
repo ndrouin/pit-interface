@@ -10,8 +10,9 @@ include 'dashboard.php';
 
 ?>
 
-<div style="margin-top: 5%">
-  <table class="table">
+<div style="margin-top: 1%;">
+    <div class="table-responsive">
+        <table class="table table-striped">
     <thead>
         <tr>
             <th>id</th>

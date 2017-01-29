@@ -17,7 +17,12 @@ class Controller
         $this->model = new Model("localhost","root","rootroot");
     }
 
-    public function invoke()
+    public function invokeOverview()
+    {
+        include 'view/overview.php';
+    }
+
+    public function invokeDevicesList()
     {
         $devices = $this->model->getDevices();
         include 'view/listDevices.php';

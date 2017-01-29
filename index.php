@@ -9,6 +9,18 @@
 include_once ("controller/Controller.php");
 
 $controller = new Controller();
-$controller->invoke();
+
+$action = isset($_GET['action']) ? $_GET['action'] : NULL;
+switch ($action) {
+    case 'overview':
+        $controller->invokeOverview();
+        break;
+    case 'devicesList':
+        $controller->invokeDevicesList();
+        break;
+    default:
+        $controller->invokeOverview();
+}
+
 
 

@@ -38,13 +38,28 @@ class Model
                 $device = new Device($row["id"], $row["name"], $row["date"], $row["bt_addr"]);
                 $result->append($device);
             }
+            $db = null;
             return $result;
         }
         catch(PDOException $e)
         {
             echo "Connection failed: " . $e->getMessage();
         }
+    }
 
-
+    public function getDevicesNumber()
+    {
+        try {
+            $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT id, name, date, bt_addr FROM bt_devices";
+            $result = $db->query($query)->rowCount();
+            $db = null;
+            return $result;
+        }
+        catch(PDOException $e)
+        {
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
 }
