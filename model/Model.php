@@ -14,20 +14,30 @@ include_once("Device.php");
 class Model
 {
 
-    public function connection($server, $username, $password)
+    private $server;
+    private $username;
+    private $password;
+
+    public function __construct($server, $username, $password)
     {
-        $this->$server = $server;
-        $this->$username= $username;
-        $this->$password = $password;
+        $this->server = $server;
+        $this->username = $username;
+        $this->password = $password;
+    }
+
+    public function getDevice()
+    {
 
         try {
-            $conn = new PDO("mysql:host=$server;dbname=IoT_radon", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
+            $connection = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password);
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $connection = null;
         }
         catch(PDOException $e)
         {
             echo "Connection failed: " . $e->getMessage();
         }
+
+
     }
 }

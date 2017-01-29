@@ -14,8 +14,8 @@ class Controller
 
     public function __construct()
     {
-        $this->model = new Model();
-        $this->model->connection("localhost","root","rootroot");
+        $this->model = new Model("localhost","root","rootroot");
+        $this->model->getDevice();
     }
 
     public function invoke()
