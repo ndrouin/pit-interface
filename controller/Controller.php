@@ -21,6 +21,7 @@ class Controller
     {
         $number = $this->model->getDevicesNumber();
         $fillingLevel = $this->model->getFillingLevel();
+        $fillingPercent = 100 - $fillingLevel;
         $lastSensors = $this->model->getLastSensors();
         include 'view/overview.php';
     }

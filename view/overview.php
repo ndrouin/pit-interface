@@ -24,32 +24,35 @@ include 'dashboard.php';
     ?>
 
 
-	<div style="margin-top: 1%;">
-    	<div class="table-responsive">
-        	<table class="table table-striped">
-    	<thead>
-        	<tr>
-            	<th>id</th>
-	            <th>value</th>
-    	        <th>Date</th>
-        	</tr>
-	    </thead>
-    	<tbody>
-            <?php
-                foreach ($lastSensors as $lastSensor)
-                {
-                    echo "
-                    <tr>
-                        <td>".$lastSensor->getId()."</td>
-                        <td>".$lastSensor->getValue()."</td>
-                        <td>".$lastSensor->getDate()."</td>
-                    </tr>
-                    ";
-                }
-            ?>
-    	</tbody>
-  	</table>
-	</div>
+<head>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Filling Level', <?php echo $fillingLevel ?>],
+        ]);
+
+        var options = {
+          width: 500, height: 500,
+          redFrom: 0, redTo: 25,
+          yellowFrom:25, yellowTo: 50,
+          greenFrom:50, greenTo:100,
+          minorTicks: 10
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 400px; height: 120px;"></div>
+  </body>
 
 <?php
 
