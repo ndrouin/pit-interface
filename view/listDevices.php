@@ -15,10 +15,9 @@ include 'dashboard.php';
         <table class="table table-striped">
     <thead>
         <tr>
-            <th>id</th>
             <th>Name</th>
-            <th>Date</th>
             <th>Mac Address</th>
+            <th>Times</th>
         </tr>
     </thead>
     <tbody>
@@ -27,10 +26,9 @@ include 'dashboard.php';
                 {
                     echo "
                     <tr>
-                        <td>".$device->getId()."</td>
                         <td>".$device->getName()."</td>
-                        <td>".$device->getDate()."</td>
                         <td>".$device->getAddress()."</td>
+                        <td>".$device->getNumber()."</td>
                     </tr>
                     ";
                 }

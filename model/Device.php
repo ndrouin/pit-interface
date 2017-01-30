@@ -12,13 +12,15 @@ class Device
     private $name;
     private $date;
     private $address;
+    private $number;
 
-    public function __construct($id, $name, $date, $address)
+    public function __construct($id, $name, $date, $address, $number)
     {
         $this->id = $id;
         $this->name = $name;
         $this->date = $date;
         $this->address = $address;
+        $this->number = $number;
     }
 
     public function getId()
@@ -39,5 +41,10 @@ class Device
     public function getAddress()
     {
         return $this->address;
+    }
+
+    public function getNumber()
+    {
+        return $this->number;
     }
 }
