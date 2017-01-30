@@ -66,4 +66,24 @@ class Model
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public function generateDevicesJSON()
+    {
+        try {
+            $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT id, name, date, bt_addr FROM bt_devices";
+            $result = array();
+            foreach ($db->query($query) as $row)
+            {
+                $result[] = $row;
+            }
+            $db = null;
+            return json_encode($result);
+        }
+        catch(PDOException $e)
+        {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
 }

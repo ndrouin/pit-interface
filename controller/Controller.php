@@ -28,4 +28,10 @@ class Controller
         $devices = $this->model->getDevices();
         include 'view/listDevices.php';
     }
+
+    public function invokeAnalytics()
+    {
+        $data = $this->model->generateDevicesJSON();
+        include 'view/analytics.php';
+    }
 }

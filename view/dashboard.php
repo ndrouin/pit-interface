@@ -53,8 +53,9 @@ $full_url  = "${protocol}://${domain}${disp_port}${base_url}";
                 <?php
                     echo "<li class=\"active\"><a href=\"/index.php?action=overview\">Overview <span class=\"sr-only\">(current)</span></a></li>";
                     echo "<li><a href=\"../index.php?action=devicesList\">List of the devices</a></li>";
+                    echo "<li><a href=\"../index.php?action=analytics\">Analytics</a></li>";
                 ?>
-                <li><a href="#">Analytics</a></li>
+
                 <li><a href="#">Export</a></li>
             </ul>
         </div>

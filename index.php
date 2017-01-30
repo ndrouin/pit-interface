@@ -18,6 +18,9 @@ switch ($action) {
     case 'devicesList':
         $controller->invokeDevicesList();
         break;
+    case 'analytics':
+        $controller->invokeAnalytics();
+        break;
     default:
         $controller->invokeOverview();
 }
