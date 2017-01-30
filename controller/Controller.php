@@ -20,6 +20,7 @@ class Controller
     public function invokeOverview()
     {
         $number = $this->model->getDevicesNumber();
+        $fillingLevel = $this->model->getFillingLevel();
         $lastSensors = $this->model->getLastSensors();
         include 'view/overview.php';
     }
