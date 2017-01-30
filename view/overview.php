@@ -11,6 +11,12 @@ include 'dashboard.php';
 ?>
 
 
+    <?php
+        echo"
+            <h1><span class=\"label label-primary\">
+                Nearby devices : <bold>".$number."</bold></span></h1>";
+    ?>
+
 
 <?php
 

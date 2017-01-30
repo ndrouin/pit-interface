@@ -52,10 +52,14 @@ class Model
         try {
             $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT id, name, date, bt_addr FROM bt_devices";
-            $result = $db->query($query)->rowCount();
+            $query = "SELECT id, name, date, bt_addr FROM bt_devices WHERE UNIX_TIMESTAMP(date) > UNIX_TIMESTAMP(CURRENT_TIMESTAMP - INTERVAL 1 MINUTE) ";
+            $result = new ArrayObject();
+            foreach ($db->query($query) as $row)
+            {
+                    $result->append($row);
+            }
             $db = null;
-            return $result;
+            return $result->count();
         }
         catch(PDOException $e)
         {

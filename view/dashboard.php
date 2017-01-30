@@ -51,7 +51,7 @@ $full_url  = "${protocol}://${domain}${disp_port}${base_url}";
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <?php
-                    echo "<li class=\"active\"><a href=\"".$full_url."/overview.php\">Overview <span class=\"sr-only\">(current)</span></a></li>";
+                    echo "<li class=\"active\"><a href=\"/index.php?action=overview\">Overview <span class=\"sr-only\">(current)</span></a></li>";
                     echo "<li><a href=\"../index.php?action=devicesList\">List of the devices</a></li>";
                 ?>
                 <li><a href="#">Analytics</a></li>

@@ -19,6 +19,7 @@ class Controller
 
     public function invokeOverview()
     {
+        $number = $this->model->getDevicesNumber();
         include 'view/overview.php';
     }
 
