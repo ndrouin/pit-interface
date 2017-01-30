@@ -18,11 +18,27 @@ include 'dashboard.php';
     ?>
 
     <?php
-        echo"
-            <h1><span class=\"label label-primary\">
-                Filling Level : <bold>".$fillingLevel."</bold></span></h1>";
-    ?>
-
+    
+		if ($fillingLevel > 50)
+		{
+        	echo"
+            	<h1><span class=\"label label-success\">
+                	Filling Level : <bold>".$fillingLevel."</bold></span></h1>";
+        }
+        
+		else if ($fillingLevel == 40)
+		{
+        	echo"
+            	<h1><span class=\"label label-warning\">
+                	Filling Level : <bold>".$fillingLevel."</bold></span></h1>";
+        }    
+		else if ($fillingLevel < 40)
+		{
+        	echo"
+            	<h1><span class=\"label label-danger\">
+                	Filling Level : <bold>".$fillingLevel."</bold></span></h1>";
+        }        
+   ?>
 
 <head>
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
