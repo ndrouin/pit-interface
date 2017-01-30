@@ -18,4 +18,18 @@ class Sensor
         $this->value = $value;
         $this->date = $date;
     }
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
 }
