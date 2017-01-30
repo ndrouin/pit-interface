@@ -29,19 +29,13 @@ $full_url  = "${protocol}://${domain}${disp_port}${base_url}";
             <span class="icon-bar"></span>
           </button>
             <?php
-                echo "<a class=\"navbar-brand\" href=\"".$full_url."/overview.php\">Shelf.me</a>";
+                echo "<a class=\"navbar-brand\" href=\"/index.php?action=overview\">Shelf.me</a>";
             ?>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
         </div>
       </div>
     </nav>
@@ -55,8 +49,6 @@ $full_url  = "${protocol}://${domain}${disp_port}${base_url}";
                     echo "<li><a href=\"../index.php?action=devicesList\">List of the devices</a></li>";
                     echo "<li><a href=\"../index.php?action=analytics\">Analytics</a></li>";
                 ?>
-
-                <li><a href="#">Export</a></li>
             </ul>
         </div>
 

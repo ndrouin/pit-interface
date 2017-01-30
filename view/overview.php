@@ -23,24 +23,23 @@ include 'dashboard.php';
 		{
         	echo"
             	<h1><span class=\"label label-success\">
-                	Filling Level : <bold>".$fillingLevel."</bold></span></h1>";
+                	Filling Level : <bold>".$fillingLevel."%</bold></span></h1>";
         }
         
 		else if ($fillingLevel == 40)
 		{
         	echo"
             	<h1><span class=\"label label-warning\">
-                	Filling Level : <bold>".$fillingLevel."</bold></span></h1>";
+                	Filling Level : <bold>".$fillingLevel."%</bold></span></h1>";
         }    
 		else if ($fillingLevel < 40)
 		{
         	echo"
             	<h1><span class=\"label label-danger\">
-                	Filling Level : <bold>".$fillingLevel."</bold></span></h1>";
+                	Filling Level : <bold>".$fillingLevel."%</bold></span></h1>";
         }        
    ?>
 
-<head>
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript">
       google.charts.load('current', {'packages':['gauge']});
@@ -65,10 +64,9 @@ include 'dashboard.php';
         chart.draw(data, options);
       }
     </script>
-  </head>
-  <body>
-    <div id="chart_div" style="width: 400px; height: 120px;"></div>
-  </body>
+
+    <div id="chart_div" style="margin-left: 600px; width: 400px; height: 120px;"></div>
+
 
 <?php
 
