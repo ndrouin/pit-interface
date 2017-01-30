@@ -30,7 +30,7 @@ include 'dashboard.php';
             ]);
 
             var options = {
-                title: 'Company Performance',
+                title: 'Evolution of the umber of devices on the week',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };

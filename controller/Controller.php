@@ -35,7 +35,10 @@ class Controller
     public function invokeAnalytics()
     {
         $currentDevices = $this->model->getDevicesCurrentDay();
-        $currentDate = date_format(new DateTime($currentDevices->offsetGet(0)->getDate()), 'Y-m-d');
+        if ($currentDevices->count() == 0)
+            $currentDate = date("Y-m-d");
+        else
+            $currentDate = date_format(new DateTime($currentDevices->offsetGet(0)->getDate()), 'Y-m-d');
         $currentNumber = $currentDevices->count();
         $devices0 = $this->model->getDevicesByDay("6");
         $devices1 = $this->model->getDevicesByDay("5");
