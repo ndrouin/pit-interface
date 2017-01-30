@@ -118,6 +118,31 @@ class Model
         }
     }
 
+    public function getDevicesByHour($hour)
+    {
+        try {
+            $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $h = $hour - 1;
+            $query = "SELECT DISTINCT bt_addr FROM bt_devices 
+                      WHERE DATE(date) = CURRENT_DATE 
+                      AND 
+                       HOUR (date) = ".(string)$h;
+            $result = new ArrayObject();
+            foreach ($db->query($query) as $row)
+            {
+                $device = new Device($row["id"], $row["name"], $row["date"], $row["bt_addr"]);
+                $result->append($device);
+            }
+            $db = null;
+            return $result;
+        }
+        catch(PDOException $e)
+        {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
     public function getDevicesCurrentDay()
     {
         try {

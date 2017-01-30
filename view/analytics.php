@@ -16,7 +16,7 @@ include 'dashboard.php';
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Year', 'Devices'],
+                ['Day', 'Number of Devices'],
                 <?php
                     echo"['".$date0."',  ".$number0."],";
                     echo"['".$date1."',  ".$number1."],";
@@ -29,9 +29,37 @@ include 'dashboard.php';
 
             ]);
 
+            var data1 = google.visualization.arrayToDataTable([
+                ['Hour', 'Number of Devices'],
+                <?php
+                    echo"['8h',  ".$number8."],";
+                echo"['9h',  ".$number9."],";
+                echo"['10h',  ".$number10."],";
+                echo"['11h',  ".$number11."],";
+                echo"['12h',  ".$number12."],";
+                echo"['13h',  ".$number13."],";
+                echo"['14h',  ".$number14."],";
+                echo"['15h',  ".$number15."],";
+                echo"['16h',  ".$number16."],";
+                echo"['17h',  ".$number17."],";
+                echo"['18h',  ".$number18."],";
+                echo"['19h',  ".$number19."],";
+                echo"['20h',  ".$number20."],";
+                echo"['21h',  ".$number21."],";
+                echo"['22h',  ".$number22."],";
+                ?>
+
+            ]);
+
             var options = {
-                title: 'Evolution of the umber of devices on the week',
-                curveType: 'function',
+                title: 'Evolution of the number of devices during the last 7 days',
+                curveType: 'none',
+                legend: { position: 'bottom' }
+            };
+
+            var options1 = {
+                title: 'Evolution of the number of devices during the current day',
+                curveType: 'none',
                 legend: { position: 'bottom' }
             };
 
@@ -39,7 +67,7 @@ include 'dashboard.php';
             var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart1'));
 
             chart.draw(data, options);
-            chart1.draw(data, options);
+            chart1.draw(data1, options1);
         }
 
 

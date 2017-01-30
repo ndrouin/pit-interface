@@ -34,7 +34,9 @@ $full_url  = "${protocol}://${domain}${disp_port}${base_url}";
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Help</a></li>
+              <?php
+                echo "<li><a href=\"../index.php?action=video\">Help</a></li>";
+              ?>
           </ul>
         </div>
       </div>

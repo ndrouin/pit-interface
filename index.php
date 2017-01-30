@@ -21,6 +21,9 @@ switch ($action) {
     case 'analytics':
         $controller->invokeAnalytics();
         break;
+    case 'video':
+        $controller->invokeVideo();
+        break;
     default:
         $controller->invokeOverview();
 }
