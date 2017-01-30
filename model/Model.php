@@ -54,7 +54,7 @@ class Model
         try {
             $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT id, name, date, bt_addr FROM bt_devices 
+            $query = "SELECT DISTINCT bt_addr FROM bt_devices 
                       WHERE UNIX_TIMESTAMP(date) > UNIX_TIMESTAMP(CURRENT_TIMESTAMP - INTERVAL 1 MINUTE) ";
             $result = $db->query($query)->rowCount();
             $db = null;
@@ -99,7 +99,7 @@ class Model
         try {
             $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT id FROM bt_devices 
+            $query = "SELECT DISTINCT bt_addr FROM bt_devices 
                       WHERE DATE(date) 
                       BETWEEN
                        CURRENT_DATE - INTERVAL ".$day." DAY AND CURRENT_DATE - INTERVAL ".$day." DAY";
@@ -123,7 +123,7 @@ class Model
         try {
             $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT id, name, date, bt_addr FROM bt_devices 
+            $query = "SELECT DISTINCT bt_addr FROM bt_devices 
                       WHERE DATE(date) = CURRENT_DATE";
             $result = new ArrayObject();
             foreach ($db->query($query) as $row)

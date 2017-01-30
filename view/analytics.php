@@ -16,15 +16,15 @@ include 'dashboard.php';
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Year', 'Devices', 'Capacity'],
+                ['Year', 'Devices'],
                 <?php
-                    echo"['".$date0."',  ".$number0.",      400],";
-                    echo"['".$date1."',  ".$number1.",      400],";
-                    echo"['".$date2."',  ".$number2.",      400],";
-                    echo"['".$date3."',  ".$number3.",      400],";
-                    echo"['".$date4."',  ".$number4.",      400],";
-                    echo"['".$date5."',  ".$number5.",      400],";
-                    echo"['".$currentDate."',  ".$currentNumber.",      400],";
+                    echo"['".$date0."',  ".$number0."],";
+                    echo"['".$date1."',  ".$number1."],";
+                    echo"['".$date2."',  ".$number2."],";
+                    echo"['".$date3."',  ".$number3."],";
+                    echo"['".$date4."',  ".$number4."],";
+                    echo"['".$date5."',  ".$number5."],";
+                    echo"['".$currentDate."',  ".$currentNumber."],";
                 ?>
 
             ]);
@@ -36,12 +36,20 @@ include 'dashboard.php';
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart1'));
 
             chart.draw(data, options);
+            chart1.draw(data, options);
         }
-    </script>
 
-<div id="curve_chart" style="margin-left: 200px; width: 1300px; height: 700px"></div>
+
+    </script>
+<div class="container">
+    <div class="row">
+        <div id="curve_chart" style="margin-left: 50px; width: 1300px; height: 350px"></div>
+        <div id="curve_chart1" style="margin-left: 50px; width: 1300px; height: 350px"></div>
+    </div>
+</div>
 
 <?php
 
