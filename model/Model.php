@@ -52,14 +52,11 @@ class Model
         try {
             $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT id, name, date, bt_addr FROM bt_devices WHERE UNIX_TIMESTAMP(date) > UNIX_TIMESTAMP(CURRENT_TIMESTAMP - INTERVAL 1 MINUTE) ";
-            $result = new ArrayObject();
-            foreach ($db->query($query) as $row)
-            {
-                    $result->append($row);
-            }
+            $query = "SELECT id, name, date, bt_addr FROM bt_devices 
+                      WHERE UNIX_TIMESTAMP(date) > UNIX_TIMESTAMP(CURRENT_TIMESTAMP - INTERVAL 1 MINUTE) ";
+            $result = $db->query($query)->rowCount();
             $db = null;
-            return $result->count();
+            return $result;
         }
         catch(PDOException $e)
         {
@@ -67,25 +64,6 @@ class Model
         }
     }
 
-    public function generateDevicesJSON()
-    {
-        try {
-            $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT id, name, date, bt_addr FROM bt_devices";
-            $result = array();
-            foreach ($db->query($query) as $row)
-            {
-                $result[] = $row;
-            }
-            $db = null;
-            return json_encode($result);
-        }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
-        }
-    }
     public function getLastSensors()
     {
 
@@ -104,6 +82,52 @@ class Model
             {
                 $lastSensors = new Sensor($row["sensor_id"], $row["value"], $row["date"]);
                 $result->append($lastSensors);
+            }
+            $db = null;
+            return $result;
+        }
+        catch(PDOException $e)
+        {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    public function getDevicesByDay($day)
+    {
+        try {
+            $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT id FROM bt_devices 
+                      WHERE DATE(date) 
+                      BETWEEN
+                       CURRENT_DATE - INTERVAL ".$day." DAY AND CURRENT_DATE - INTERVAL ".$day." DAY";
+            $result = new ArrayObject();
+            foreach ($db->query($query) as $row)
+            {
+                $device = new Device($row["id"], $row["name"], $row["date"], $row["bt_addr"]);
+                $result->append($device);
+            }
+            $db = null;
+            return $result;
+        }
+        catch(PDOException $e)
+        {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    public function getDevicesCurrentDay()
+    {
+        try {
+            $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $query = "SELECT id, name, date, bt_addr FROM bt_devices 
+                      WHERE DATE(date) = CURRENT_DATE";
+            $result = new ArrayObject();
+            foreach ($db->query($query) as $row)
+            {
+                $device = new Device($row["id"], $row["name"], $row["date"], $row["bt_addr"]);
+                $result->append($device);
             }
             $db = null;
             return $result;
