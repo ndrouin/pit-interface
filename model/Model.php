@@ -31,11 +31,11 @@ class Model
         try {
             $db = new PDO("mysql:host=$this->server;dbname=IoT_radon", $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $query = "SELECT id, name, date, bt_addr, COUNT(*) FROM bt_devices GROUP BY bt_addr ORDER BY COUNT(*) DESC ";
+            $query = "SELECT id, name, date, bt_addr, COUNT(bt_addr) AS addr FROM bt_devices GROUP BY bt_addr ORDER BY addr DESC ";
             $result = new ArrayObject();
             foreach ($db->query($query) as $row)
             {
-                $device = new Device($row["id"], $row["name"], $row["date"], $row["bt_addr"], $row["COUNT(*)"]);
+                $device = new Device($row["id"], $row["name"], $row["date"], $row["bt_addr"], $row["addr"]);
                 $result->append($device);
 
 

@@ -74,8 +74,8 @@ include 'dashboard.php';
     </script>
 <div class="container">
     <div class="row">
-        <div id="curve_chart" style="margin-left: 50px; width: 1300px; height: 350px"></div>
-        <div id="curve_chart1" style="margin-left: 50px; width: 1300px; height: 350px"></div>
+        <div id="curve_chart" style="margin-left: 120px; width: 1300px; height: 350px"></div>
+        <div id="curve_chart1" style="margin-left: 120px; width: 1300px; height: 350px"></div>
     </div>
 </div>
 
